@@ -1,0 +1,63 @@
+:root {
+    --title_font-: 'Montserrat', Arial;
+    --body_font: 'Lato', Arial;
+    --main_color: #ECECEC;
+    --secondary_color: #8A8FA3;
+    font-family: var(--body_font);
+}
+
+html,body {
+    background-color: var(--main_color);
+    margin: 0;
+    height: 100vh;
+}
+
+h1 {
+    font-family: var(--title_font);
+    font-size: 2rem;
+}
+
+p {
+    font-family: var(--body_font);
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.header {
+    background-color: var(--secondary_color);
+}
+    .header > nav {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.25em 1em 0.25em;
+    }
+        .header > nav > button {
+            font-family: var(--body_font);
+            font-size: 1.15em;
+            background: none;
+            border: none;
+            transition: transform 0.3s ease-in-out;
+        }
+        .header > nav > button:hover {
+            transform: scale(1.18);
+            backface-visibility: hidden;
+        }
+
+.main-title {
+    color: #A50000;
+    margin-bottom: 0.25em;
+    margin-top: 0.25em;
+    margin-right: 4%;
+    text-align: center;
+    flex-grow:1;
+}    
+    .main-title > span {
+      color: #B3B3B3;
+    }
+
+
+

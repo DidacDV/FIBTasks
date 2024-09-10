@@ -1,5 +1,8 @@
 import { createHeader } from "./components/header";
-
+/*
+    class -> with -
+    variable -> with _
+*/
 
 
 
