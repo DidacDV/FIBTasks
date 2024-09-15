@@ -1,4 +1,5 @@
 # FIBTasks
-Creating a web-app to keep track of tasks given at the computer science degree at FIB, UPC.
+Developing a web app to manage and organize tasks related to my computer engineering degree, focusing on making it easier to track assignments and projects from different courses.
+
 
 Technologies used: HTML, CSS, JS, WEBPACK, NPM.
