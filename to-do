@@ -1,10 +1,13 @@
 Start by doing the header and side bar with its style doing it with js. FIRST do all the necessary front end components and style them ->
 	header DONE
-	sidebar TO-DO
+
+	sidebar TO-DO ->- quatris already created, have to STYLE THEM and DISPLAY USER SUBJECTS/SUBJECT DROPDOWN TO PICK also to get each subject the FIB offers (hard coded maybe)
+					- make it return the quatri object + the div for the DOM, and use the object in the future
+					- create subject class and maybe even task class, store each quatri in the index and each subject to the quatri and each task to the subject
+					(task -> subject -> quatri -> index)
 	maincontent TO-DO
 	
-	then write the logic at index.js etc
 
-CHECK SOME FONTS
+CHECK SOME FONTS + STYLE in general
 
 slow progress ... ...

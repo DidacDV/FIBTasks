@@ -3,6 +3,7 @@
     --body_font: 'Lato', Arial;
     --main_color: #ECECEC;
     --secondary_color: #8A8FA3;
+    --third_color: #ADBBC6;
     font-family: var(--body_font);
 }
 
@@ -61,3 +62,14 @@ p {
 
 
 
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 90%;
+}
+
+.side-bar {
+    height: 100%;
+    width: 20%;
+    background-color: var(--third_color);
+}
