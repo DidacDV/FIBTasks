@@ -25,6 +25,14 @@ export function createSidebar() {
     quatri_dropdown.classList.add("quatri-dropdown");
     quatri_dropdown.style.display = "none"; 
 
+    const informationOption = document.createElement("option");
+    informationOption.classList.add("placeholder");
+    informationOption.value = "none";
+    informationOption.textContent = "-Select a Quatri-";
+    informationOption.disabled = true;//not avalaible, only for UI guide
+    informationOption.selected = true; 
+    quatri_dropdown.appendChild(informationOption);
+
     for (const option of quatri_options) {
         const optionElement = document.createElement("option");
         optionElement.value = option;
