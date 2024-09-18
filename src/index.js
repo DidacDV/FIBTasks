@@ -4,20 +4,52 @@ import { renderDOM } from "./render";
 import { Quatri } from "./classes/quatri"; 
 const quatris = [];
 
-
-
 renderDOM();
-
-const checkForNewQuatri = () => {
-   quatri_dropdown.addEventListener("change", (e) => {
-      const selectedValue = e.target.value;
-      const new_quatri = new Quatri(selectedValue,["math"],2212);  //trying with default values
-      quatri_list.appendChild(new_quatri.createAndDisplayQuatri());
-      quatri_dropdown.style.display = "none"; //hide it again after using it
-   });
-} 
-
 const quatri_list = document.querySelector(".quatri-list"); 
 const quatri_dropdown = document.querySelector(".quatri-dropdown");
 
-checkForNewQuatri();
+
+function checkIfQuatriExists(quatri_id) {
+   for (const q of quatris) {
+      if (q.id == quatri_id) {
+         return true;
+      }
+   }
+   return false;
+}
+
+const sortQuatrisAlphabetically = () => {
+   quatris.sort((a, b) => a.id.localeCompare(b.id));
+};
+
+const renderSortedQuatris = () => {
+   quatri_list.innerHTML = ""; //clear up the list before rendering again
+   for(const q of quatris) {
+      quatri_list.appendChild(q.createAndDisplayQuatri());
+   }
+};
+
+const addNewQuatri = (selectedValue) => {
+   const new_quatri = new Quatri(selectedValue, ["math"], 2212);
+   quatris.push(new_quatri);
+   sortQuatrisAlphabetically();
+   renderSortedQuatris();
+}
+
+const checkForNewQuatri = (e) => {
+   const selectedValue = e.target.value;
+   if (checkIfQuatriExists(selectedValue)) {
+         alert("Quatri selected already exists");
+   }
+   else addNewQuatri(selectedValue);
+   quatri_dropdown.value = "none";
+   quatri_dropdown.style.display = "none";
+};
+
+
+const init = () => {
+   quatri_dropdown.addEventListener("change", checkForNewQuatri);
+}
+
+init();
+
