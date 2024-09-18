@@ -19,22 +19,27 @@ export class Quatri {
         const quatri_header = document.createElement("div");
         quatri_header.classList.add("quatri-header");
         
-        const default_quatri = document.createElement("p");
-        default_quatri.classList = "default";
-        default_quatri.textContent = this.id;
+        const quatri_name = document.createElement("p");
+        quatri_name.classList = "quatri-name";
+        quatri_name.textContent = this.id;
         
         const trash_icon = document.createElement("svg");
         trash_icon.innerHTML = trash_icon_info;
         
         const subject_list = document.createElement("div");
         subject_list.classList.add("subject-list");
+
+        const new_subj = document.createElement("button");
+        new_subj.textContent = "hola";
+        subject_list.appendChild(new_subj);
+        
         subject_list.style.display = "none"; //Hidden until you click on the quatri 
         
         const add_subject_btn = document.createElement("button"); //this button is only for the quatri on which it is on
         add_subject_btn.textContent = "Add Subject";
         add_subject_btn.style.display = "none"; //Same as subject list
 
-        quatri_header.appendChild(default_quatri);
+        quatri_header.appendChild(quatri_name);
         quatri_header.appendChild(trash_icon);
         
         //To make the quatri's info appear or hide when clicked
@@ -53,5 +58,10 @@ export class Quatri {
 
         return quatri_div;  //Returning the dom element
     }
+
+    addSubject(subject_added) {
+        this.user_subjects.push(subject_added);
+    }
+
 }
 
