@@ -5,9 +5,16 @@ Start by doing the header and side bar with its style doing it with js. FIRST do
 					- make it return the quatri object + the div for the DOM, and use the object in the future
 					- create subject class and maybe even task class, store each quatri in the index and each subject to the quatri and each task to the subject
 					(task -> subject -> quatri -> index)
+					- everything above still to do + task class done inside subject class
+					
 	maincontent TO-DO
 	
-
+	RESTRUCTURE OF THE CODE -> index should be more clear.
+	
 CHECK SOME FONTS + STYLE in general
+
+After finishing most of the functionality -> styling
+
+
 
 slow progress ... ...
