@@ -56,6 +56,7 @@ export class Quatri {
         subject_list.style.display = "none"; //Hidden until you click on the quatri 
         
         const add_subject_btn = document.createElement("button"); //this button is only for the quatri on which it is on
+        add_subject_btn.classList.add("add-subject-button");
         add_subject_btn.textContent = "Add Subject";
         add_subject_btn.style.display = "none"; //Same as subject list
             
