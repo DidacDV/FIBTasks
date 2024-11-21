@@ -15,6 +15,9 @@ const renderDOM = () => {
     const container = document.createElement("div");
     container.classList.add("container");
     container.appendChild(createSidebar());
+    const rightSide = document.createElement("div");
+    rightSide.classList.add("subjectDiv");
+    container.appendChild(rightSide);
     app.appendChild(container);
 }
 
