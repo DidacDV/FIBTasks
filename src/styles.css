@@ -4,7 +4,7 @@
     --main_color: #ECECEC;
     --secondary_color: #8A8FA3;
     --third_color: #ADBBC6;
-    font-family: var(--body_font);
+    font-family: var(--body_font), serif;
 }
 
 html,body {
@@ -14,7 +14,7 @@ html,body {
 }
 
 h1 {
-    font-family: var(--title_font);
+    font-family: var(--title_font-);
     font-size: 2rem;
 }
 
@@ -99,7 +99,7 @@ p {
     border: 1px solid rgba(138, 143, 163, 0.2);
     border-radius: 0.375rem;
     background-color: white;
-    font-family: var(--body_font);
+    font-family: var(--body_font), serif;
     color: #4A5568;
     cursor: pointer;
 }
@@ -116,8 +116,22 @@ p {
     border: 1px solid rgba(138, 143, 163, 0.2);
     border-radius: 0.375rem;
     background-color: white;
-    font-family: var(--body_font);
+    font-family: var(--body_font), serif;
     color: #4A5568;
+}
+
+.sideBarBtn {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    border: 1px solid rgba(138, 143, 163, 0.2);
+    border-radius: 0.375rem;
+    background-color: white;
+}
+
+.sideBarBtn:hover {
+    background-color: #7A7F93;
+    transform: translateY(-1px);
 }
 
 .subject-list button {
@@ -138,6 +152,16 @@ p {
     color: #050709;
 }
 
+.btn-container {
+    width: fit-content;
+    margin: 0 auto; /*take out margin an leave it on center */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
 #new-quatri { /* add quatri btn*/
     width: 70%;
     padding: 0.75rem 1rem;
@@ -150,11 +174,6 @@ p {
     font-weight: 1000;
     cursor: pointer;
     transition: all 0.2s ease;
-}
-
-#new-quatri:hover {
-    background-color: #7A7F93;
-    transform: translateY(-1px);
 }
 
 /* Trash Icon */

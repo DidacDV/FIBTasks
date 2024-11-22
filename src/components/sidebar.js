@@ -18,6 +18,7 @@ export function createSidebar() {
     quatri_btn_container.classList.add("btn-container");
     const add_quatri_btn = document.createElement("button");
     add_quatri_btn.id = "new-quatri";
+    add_quatri_btn.classList.add("sideBarBtn");
     add_quatri_btn.textContent = "Add Quatri";
 
     //This menu will be used to choose upon all quatris of FIB

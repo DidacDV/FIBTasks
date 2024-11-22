@@ -21,4 +21,6 @@ slow progress ... ...
 
 
 add logic of subject dropdown
-crear div dins del div de subjectdiv, per mantenir tot alineat al centre.
+style sidebar so size doesnt readjust when dropdown appears
+    style quatri section
+    style subject div
