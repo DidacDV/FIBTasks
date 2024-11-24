@@ -20,7 +20,8 @@ After finishing most of the functionality -> styling
 slow progress ... ...
 
 
-add logic of subject dropdown
-style sidebar so size doesnt readjust when dropdown appears
-    style quatri section
-    style subject div
+create task section and implementation
+hardcode all subjects and quatris
+style task sections
+check edge cases
+re-structure the whole code (it's really messy)
