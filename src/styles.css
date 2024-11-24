@@ -161,7 +161,8 @@ p {
     color: #2c323d;
     font-size: 0.875rem;
     transition: all 0.2s ease;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
 }
 
 .subject-list button:hover {
@@ -257,7 +258,6 @@ p {
     flex-direction: column;
     align-self: center;
     width: auto;
-    margin-bottom: 2rem;
 }
 
 .non-expanded {
@@ -265,6 +265,7 @@ p {
 }
 
 .expanded {
-    margin-bottom: 2rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
 }
 
