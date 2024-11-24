@@ -5,8 +5,6 @@ export function createHeader() {
   const header = document.createElement("header");
   header.classList.add("header");
   const nav = document.createElement("nav");
-  const add_subj_btn = document.createElement("button");
-  add_subj_btn.textContent = "Add Subject";
   const profile_btn = document.createElement("button");
   //adding svg to the button
   profile_btn.innerHTML = user_icon;
@@ -15,7 +13,6 @@ export function createHeader() {
   
   //modifying title -> should be an icon not a simple title (or style it so it looks like fib logo)
   text.innerHTML = fib_logo;
-  nav.appendChild(add_subj_btn);
   nav.appendChild(text);
   nav.appendChild(profile_btn);
 

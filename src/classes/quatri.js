@@ -17,6 +17,7 @@ export class Quatri {
     createSubjectListToChoose(subjectsToChoose) {
         const toChoose = document.createElement("select");
         toChoose.classList.add("toChooseSubject-dropdown");
+        toChoose.id = "choose" + this.id;
         toChoose.style.display = "none"; 
     
         const informationOption = document.createElement("option");
@@ -40,7 +41,7 @@ export class Quatri {
     createAndDisplayQuatri() {
         const quatri_div = document.createElement("div");
         quatri_div.classList.add("quatri-container");
-        
+        quatri_div.classList.add("non-expanded");
         const quatri_header = document.createElement("div");
         quatri_header.classList.add("quatri-header");
         
@@ -49,24 +50,29 @@ export class Quatri {
         quatri_name.textContent = this.id;
         
         const trash_icon = document.createElement("svg");
+        trash_icon.id = ("trash-icon");
         trash_icon.innerHTML = trash_icon_info;
         
+        trash_icon.addEventListener("click",(e) => {
+            e.stopPropagation(); //needed so it doesn't toggle the dropdown!
+            this.removeQuatri();
+        })
+
         const subject_list = document.createElement("div");
         subject_list.classList.add("subject-list");
         subject_list.style.display = "none"; //Hidden until you click on the quatri 
         
         const add_subject_btn = document.createElement("button"); //this button is only for the quatri on which it is on
         add_subject_btn.classList.add("add-subject-button");
-        add_subject_btn.classList.add("sideBarBtn");
         add_subject_btn.textContent = "Add Subject";
         add_subject_btn.style.display = "none"; //Same as subject list
             
         add_subject_btn.addEventListener("click", () => {
             const subjectsToChoose = this.getSubjectOptions();
-            let dropdown = subject_list.querySelector(".toChooseSubject-dropdown");
+            let dropdown = document.querySelector("#choose" + this.id);
             if (!dropdown) {    //if it doesn't exist, create it and display it
                 dropdown = this.createSubjectListToChoose(subjectsToChoose);
-                subject_list.appendChild(dropdown); // 
+                quatri_div.appendChild(dropdown); // 
             }
         
             dropdown.style.display = dropdown.style.display === "none" ? "block" : "none";
@@ -87,7 +93,17 @@ export class Quatri {
         //To make the quatri's info appear or hide when clicked
         quatri_header.addEventListener("click", () => {
             const isExpanded = subject_list.style.display === "block";
-            subject_list.style.display = isExpanded ? "none" : "block";
+        
+            if (isExpanded) {
+                subject_list.style.display = "none";
+                quatri_div.classList.remove("expanded");
+                quatri_div.classList.add("non-expanded");
+            } else {
+                subject_list.style.display = "block";
+                quatri_div.classList.remove("non-expanded");
+                quatri_div.classList.add("expanded");
+            }
+        
             add_subject_btn.style.display = isExpanded ? "none" : "block";
         });
         
@@ -129,6 +145,22 @@ export class Quatri {
         })
         subjectDisplayed.textContent = subject.name;
         subject_list.appendChild(subjectDisplayed);
+    }
+
+    removeQuatri() {
+        const removeQuatriEvent = new CustomEvent("remove-quatri", {
+            detail: {
+                quatri_id: this.id,
+            },
+        });
+
+        try {
+            document.dispatchEvent(removeQuatriEvent);
+            this.element.remove();
+        }
+        catch (err) {
+            console.log(err);
+        }
     }
 
 }
