@@ -20,7 +20,9 @@ After finishing most of the functionality -> styling
 slow progress ... ...
 
 
-create task section and implementation
+create task section and implementation ->
+    dialog created: need to make a form inside
+    style such dialog (make background blurry or darker)
 hardcode all subjects and quatris
 style task sections
 check edge cases

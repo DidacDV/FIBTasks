@@ -1,3 +1,5 @@
+import {createTaskPopUp} from "../components/taskPopUp";
+
 export class Task {
     constructor(title, description, expireDate, priority) {
       this.title = title;
@@ -32,6 +34,13 @@ export class Subject {
         
         const taskButton = document.createElement("button");
         taskButton.textContent = "Add Task";
+
+        taskButton.className = ("task-button");
+        taskButton.addEventListener("click", (e) =>{
+            const popUp = createTaskPopUp();
+            subjectDiv.appendChild(popUp);
+            popUp.showModal();
+        })
 
         subjectDiv.append(title, tasksDiv, taskButton);
         doc.append(subjectDiv);

@@ -1,14 +1,13 @@
 import { trash_icon_info } from "../assets/trash_icon";
 import { Subject } from "./subject";
-
+import {subjects} from "../assets/subjects";
 //quatri when shown in side bar -> quatriId, user subjects and add subject button
-const subjects = {"Q1": ["IC"]}; //if added, it is deleted from here, if it is deleted, it is added to here
+
 let page = "";
 
 export class Quatri {
     constructor(id, subjects, year) {
         this.id = id;
-        this.subjects = subjects;  //Array of subjects to choose from
         this.user_subjects = []; //Array of subjects that have been picked by the user to keep track on.
         this.year = year;
         this.element = null;

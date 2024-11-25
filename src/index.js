@@ -10,7 +10,7 @@ const quatri_dropdown = document.querySelector(".quatri-dropdown");
 
 function checkIfQuatriExists(quatri_id) {
    for (const q of quatris) {
-      if (q.id == quatri_id) {
+      if (q.id === quatri_id) {
          return true;
       }
    }
@@ -22,7 +22,7 @@ const sortQuatrisAlphabetically = () => {
 };
 
 const addNewQuatri = (selectedValue) => {
-   const new_quatri = new Quatri(selectedValue, ["math"], 2212);
+   const new_quatri = new Quatri(selectedValue, 2212);
    quatris.push(new_quatri);
    console.log(selectedValue);
    const quatriElement = new_quatri.createAndDisplayQuatri();
