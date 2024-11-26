@@ -26,4 +26,4 @@ create task section and implementation ->
 hardcode all subjects and quatris
 style task sections
 check edge cases
-re-structure the whole code (it's really messy)
+re-structure the whole code (it's really messy) <- major refactor: Divide rendering and main logic in two layers

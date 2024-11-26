@@ -22,7 +22,7 @@ export class Quatri {
         const informationOption = document.createElement("option");
         informationOption.classList.add("placeholder");
         informationOption.value = "none";
-        informationOption.textContent = "-Select a Subject-";
+        informationOption.textContent = "- Select -";
         informationOption.disabled = true;//not avalaible, only for UI guide
         informationOption.selected = true; 
         toChoose.appendChild(informationOption);

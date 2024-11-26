@@ -37,7 +37,24 @@ export class Subject {
 
         taskButton.className = ("task-button");
         taskButton.addEventListener("click", (e) =>{
-            const popUp = createTaskPopUp();
+            const { popUp, form } = createTaskPopUp();
+
+            form.addEventListener("submit", (e) => {
+                e.preventDefault(); //so data doesn't get lost
+
+                const formData = new FormData(form); //parse form for a better handling
+                const newTask = new Task(
+                    formData.get("title"),
+                    formData.get("description"),
+                    formData.get("dueDate"),
+                    formData.get("priority")
+                );
+
+                popUp.close();
+                popUp.remove();
+
+            })
+
             subjectDiv.appendChild(popUp);
             popUp.showModal();
         })
@@ -47,3 +64,4 @@ export class Subject {
     }
 
 }
+
