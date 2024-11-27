@@ -1,4 +1,4 @@
-export const createTaskPopUp = (onTaskCreate) => {
+export const createTaskPopUp = () => {
     const popUp = document.createElement("dialog");
     popUp.classList.add("task-popup");
 
@@ -78,8 +78,83 @@ export const createTaskPopUp = (onTaskCreate) => {
 };
 
 
-export const renderNewTask = (t,subject) => {
+export const renderNewTask = (task, subject) => {
     const tasklist = document.getElementById("tasksDiv-" + subject.name);
-    console.log(subject.name);
+    if (!tasklist) {
+        console.error(`Task list for subject ${subject.name} not found.`);
+        return;
+    }
 
-}
+    const taskCard = document.createElement("div");
+    taskCard.classList.add("task-card");
+
+    const taskBasicInfo = document.createElement("div");
+    taskBasicInfo.classList.add("task-basic-info");
+    taskBasicInfo.classList.add("task-not-done");
+    const taskName = document.createElement("p");
+    taskName.textContent = task.title;
+    taskName.classList.add("task-name");
+    const taskDueDate = document.createElement("p");
+    taskDueDate.textContent = `Due: ${task.dueDate}`;
+    taskDueDate.classList.add("task-due-date");
+    taskBasicInfo.append(taskName);
+    taskBasicInfo.append(taskDueDate);
+    const detailsButton = document.createElement("button");
+    detailsButton.textContent = "Details";
+    detailsButton.classList.add("details-button");
+    detailsButton.addEventListener("click", () => {
+        createTaskDetailsModal(task);
+    });
+
+    const doneButton = document.createElement("button");
+    doneButton.classList.add("done-button");
+    doneButton.innerHTML = "✔️"; //maybe i should change it for a svg
+    doneButton.title = "Mark as Done";
+    doneButton.addEventListener("click", () => {
+        task.complete = true;
+        if (taskBasicInfo.classList.contains("task-not-done")) {
+            taskBasicInfo.classList.remove("task-not-done");
+            taskBasicInfo.classList.add("task-done");
+        }
+        else {
+            taskBasicInfo.classList.remove("task-done");
+            taskBasicInfo.classList.add("task-not-done");
+        }
+    });
+
+    const removeButton = document.createElement("button");
+    removeButton.classList.add("remove-button");
+    removeButton.textContent = "🗑️"; // Unicode trash can icon
+    removeButton.title = "Remove Task";
+    removeButton.addEventListener("click", () => {
+        taskCard.remove();
+        subject.removeTask(task.name);
+    });
+
+    taskCard.append(doneButton, taskBasicInfo, detailsButton, removeButton);
+    tasklist.appendChild(taskCard);
+};
+
+const createTaskDetailsModal = (task) => {
+    const modal = document.createElement("dialog");
+    modal.classList.add("task-details-modal");
+
+    //another way of doing it, instead of creating every element, just insert the HTML directly
+    modal.innerHTML = `            
+        <h2>${task.title}</h2>
+        <p><strong>Description:</strong> ${task.description || "No description provided"}</p>
+        <p><strong>Due Date:</strong> ${task.dueDate}</p>
+        <p><strong>Priority:</strong> ${task.priority}</p>
+        <p><strong>Type:</strong> ${task.type}</p>
+    `;
+    const closeButton = document.createElement("button");
+    closeButton.textContent = "Close";
+    closeButton.classList.add("close-modal-button");
+    closeButton.addEventListener("click", () => {
+        modal.close();
+        modal.remove();
+    });
+    modal.appendChild(closeButton);
+    document.body.appendChild(modal);
+    modal.showModal();
+};

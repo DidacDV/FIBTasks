@@ -283,7 +283,7 @@ p {
 .task-form {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.1rem;
 }
 
 .task-form label {
@@ -319,3 +319,78 @@ p {
     background-color: var(--secondary_color);
     color: white;
 }
+
+.task-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+.task-basic-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+
+.task-basic-info.task-done {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+.done-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 0.8rem;
+    color: #28a745;
+    transition: transform 0.2s ease-in-out;
+}
+
+.done-button:hover {
+    transform: scale(1.1);
+}
+
+.task-name {
+    font-family: var(--body_font), serif;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #2c323d;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.task-name:hover {
+    color: var(--secondary_color);
+    transform: translateX(2px);
+}
+
+.task-due-date {
+    font-family: var(--body_font), serif;
+    font-size: 0.9rem;
+    color: var(--secondary_color);
+}
+
+.details-button {
+    padding: 0.25rem 0.5rem;
+    font-family: var(--body_font), serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: cornflowerblue;
+    background-color: transparent;
+    border: 1px solid cornflowerblue;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.details-button:hover {
+    background-color: cornflowerblue;
+    color: white;
+}
+

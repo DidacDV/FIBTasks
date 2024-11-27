@@ -18,10 +18,6 @@ export class Subject {
         this.tasks = [];     //tasks created by the user <- array of tasks
     }
 
-    addTask(task_added) {
-        this.tasks.push(task_added);
-    }
-
     renderSubjectPage() {
         let doc = document.querySelector(".subjectDiv");
         const subjectDiv = document.createElement("div");
@@ -70,6 +66,10 @@ export class Subject {
     addNewTask(t) {
         this.tasks.push(t);
         renderNewTask(t, this);
+    }
+
+    removeTask(name) {
+        this.tasks.delete(name);
     }
 
 }
