@@ -128,7 +128,7 @@ export const renderNewTask = (task, subject) => {
     removeButton.title = "Remove Task";
     removeButton.addEventListener("click", () => {
         taskCard.remove();
-        subject.removeTask(task.name);
+        subject.removeTask(task.title);
     });
 
     taskCard.append(doneButton, taskBasicInfo, detailsButton, removeButton);

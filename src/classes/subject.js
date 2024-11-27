@@ -18,6 +18,25 @@ export class Subject {
         this.tasks = [];     //tasks created by the user <- array of tasks
     }
 
+    saveTasks() {
+        const key = `tasks-${this.name}`; //create a key to store values for each subject, storing tasks per subject
+        const toSave = this.tasks.map(task => ({
+            title: task.title,
+            description: task.description,
+            dueDate: task.dueDate,
+            priority: task.priority,
+            type: task.type,
+            complete: task.complete,
+        }));
+        localStorage.setItem(key,JSON.stringify(toSave)); //save tasks inJSON format to localStorage
+    }
+
+    loadTasks() {
+        const key = `tasks-${this.name}`;
+        const savedTasks = JSON.parse(localStorage.getItem(key)) || [];
+        this.tasks = savedTasks.map(task => new Task(task.title, task.description, task.dueDate, task.priority, task.type));
+    }
+
     renderSubjectPage() {
         let doc = document.querySelector(".subjectDiv");
         const subjectDiv = document.createElement("div");
@@ -52,24 +71,34 @@ export class Subject {
                 popUp.close();
                 popUp.remove();
 
-            })
+            });
 
             subjectDiv.appendChild(popUp);
             popUp.showModal();
 
-        })
+        });
 
         subjectDiv.append(title, tasksDiv, taskButton);
         doc.append(subjectDiv);
     }
 
-    addNewTask(t) {
-        this.tasks.push(t);
-        renderNewTask(t, this);
+    renderAllTasks() {
+        this.loadTasks();
+        this.tasks.forEach(task => {
+            renderNewTask(task,this);       //when going to a subject, render all of its tasks created before by the user from local storage
+        })
     }
 
-    removeTask(name) {
-        this.tasks.delete(name);
+    addNewTask(t) {
+        this.tasks.push(t);
+        renderNewTask(t,this);
+        this.saveTasks();
+    }
+
+    removeTask(title) {
+        localStorage.removeItem(title);
+        this.tasks = this.tasks.filter(task => task.title !== title);
+        this.saveTasks();
     }
 
 }

@@ -140,6 +140,7 @@ export class Quatri {
             if (page != subject.name) {
                 page = subject.name;
                 subject.renderSubjectPage();
+                subject.renderAllTasks();
             }
         })
         subjectDisplayed.textContent = subject.name;

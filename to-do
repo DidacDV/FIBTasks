@@ -20,10 +20,9 @@ After finishing most of the functionality -> styling
 slow progress ... ...
 
 
-create task section and implementation ->
-    dialog created: need to make a form inside
-    style such dialog (make background blurry or darker)
-hardcode all subjects and quatris
-style task sections
+complete all the process of storing tasks etc in local storage, maybe save the whole state of the user page so it stays the same after closing
+fix adding subject bug
+decide if multiple subjects at once or not. or to choose which one to display.
+style detail section of a task
 check edge cases
 re-structure the whole code (it's really messy) <- major refactor: Divide rendering and main logic in two layers
