@@ -1,11 +1,12 @@
-import {createTaskPopUp} from "../components/taskPopUp";
+import {createTaskPopUp, renderNewTask} from "../components/taskRender";
 
 export class Task {
-    constructor(title, description, expireDate, priority) {
+    constructor(title, description, expireDate, priority, type) {
       this.title = title;
       this.description = description;
       this.dueDate = expireDate;
       this.priority = priority;
+      this.type = type;
       this.complete = false;
     }
 }
@@ -29,7 +30,8 @@ export class Subject {
         const title = document.createElement("h3");
         
         const tasksDiv = document.createElement("div");
-        tasksDiv.className = ("tasksDiv-" + this.name);
+        tasksDiv.id = ("tasksDiv-" + this.name);
+        tasksDiv.classList.add("tasksDiv");
         title.textContent = this.name;
         
         const taskButton = document.createElement("button");
@@ -47,9 +49,10 @@ export class Subject {
                     formData.get("title"),
                     formData.get("description"),
                     formData.get("dueDate"),
-                    formData.get("priority")
+                    formData.get("priority"),
+                    formData.get("labOrTheory")
                 );
-
+                this.addNewTask(newTask);
                 popUp.close();
                 popUp.remove();
 
@@ -57,10 +60,16 @@ export class Subject {
 
             subjectDiv.appendChild(popUp);
             popUp.showModal();
+
         })
 
         subjectDiv.append(title, tasksDiv, taskButton);
         doc.append(subjectDiv);
+    }
+
+    addNewTask(t) {
+        this.tasks.push(t);
+        renderNewTask(t, this);
     }
 
 }

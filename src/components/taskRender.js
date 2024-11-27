@@ -44,10 +44,10 @@ export const createTaskPopUp = (onTaskCreate) => {
     const isLabLabel = document.createElement("label");
     isLabLabel.textContent = "Laboratory Or Theory";
     const labSelect = document.createElement("select");
-    labSelect.name = "Lab or Theory";
+    labSelect.name = "labOrTheory";
     const labOptions = [
-        { value: "Lab", text: "Lab" },
-        { value: "Theory", text: "Theory" },
+        { value: "lab", text: "Lab" },
+        { value: "theory", text: "Theory" },
     ]
     labOptions.forEach(option => {
         const optionElement = document.createElement("option");
@@ -64,7 +64,10 @@ export const createTaskPopUp = (onTaskCreate) => {
     const cancelButton = document.createElement("button");
     cancelButton.type = "button";
     cancelButton.textContent = "Cancel";
-    cancelButton.addEventListener("click", () => popUp.close());
+    cancelButton.addEventListener("click", () =>  {
+        popUp.close()
+        popUp.remove();
+    });
 
 
     form.append(titleLabel, titleInput, descLabel, descInput, dateLabel, dateInput, priorityLabel, prioritySelect, isLabLabel, labSelect, buttonContainer);
@@ -73,3 +76,10 @@ export const createTaskPopUp = (onTaskCreate) => {
 
     return {popUp, form};
 };
+
+
+export const renderNewTask = (t,subject) => {
+    const tasklist = document.getElementById("tasksDiv-" + subject.name);
+    console.log(subject.name);
+
+}
