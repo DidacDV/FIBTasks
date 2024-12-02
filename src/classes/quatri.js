@@ -6,7 +6,7 @@ import {subjects} from "../assets/subjects";
 let page = "";
 
 export class Quatri {
-    constructor(id, subjects, year) {
+    constructor(id, year) {
         this.id = id;
         this.user_subjects = []; //Array of subjects that have been picked by the user to keep track on.
         this.year = year;
@@ -23,7 +23,7 @@ export class Quatri {
         informationOption.classList.add("placeholder");
         informationOption.value = "none";
         informationOption.textContent = "- Select -";
-        informationOption.disabled = true;//not avalaible, only for UI guide
+        informationOption.disabled = false; //it can be clicked but wont do anything, so first quatri doesn't get disabled
         informationOption.selected = true; 
         toChoose.appendChild(informationOption);
 
@@ -75,13 +75,13 @@ export class Quatri {
             }
         
             dropdown.style.display = dropdown.style.display === "none" ? "block" : "none";
-            dropdown.addEventListener("change", (event) => {
-                const selectedSubject = event.target.value;
+            dropdown.onchange = (e) => {
+                const selectedSubject = e.target.value;
                 if (selectedSubject !== "none") {
                     this.addSubject(selectedSubject);
-                    dropdown.style.display = "none"; 
+                    dropdown.style.display = "none";
                 }
-            });
+            }
         });
         
 
@@ -122,7 +122,9 @@ export class Quatri {
 
 
     addSubject(subject_added) {
-        const added = new Subject(subject_added, "none"); 
+        console.log(subject_added);
+
+        const added = new Subject(subject_added, "none");
         this.user_subjects.push(added);
         this.renderSubject(added); 
         const dropdown = document.querySelector(".toChooseSubject-dropdown");
@@ -137,7 +139,7 @@ export class Quatri {
         let subject_list = document.querySelector(".subject-list");
         const subjectDisplayed = document.createElement("button");
         subjectDisplayed.addEventListener("click",() => {
-            if (page != subject.name) {
+            if (page !== subject.name) {
                 page = subject.name;
                 subject.renderSubjectPage();
                 subject.renderAllTasks();
