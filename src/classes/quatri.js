@@ -68,7 +68,7 @@ export class Quatri {
             
         add_subject_btn.addEventListener("click", () => {
             const subjectsToChoose = this.getSubjectOptions();
-            let dropdown = document.querySelector("#choose" + this.id);
+            let dropdown = this.element.querySelector("#choose" + this.id);
             if (!dropdown) {    //if it doesn't exist, create it and display it
                 dropdown = this.createSubjectListToChoose(subjectsToChoose);
                 quatri_div.appendChild(dropdown); // 
@@ -127,7 +127,7 @@ export class Quatri {
         const added = new Subject(subject_added, "none");
         this.user_subjects.push(added);
         this.renderSubject(added); 
-        const dropdown = document.querySelector(".toChooseSubject-dropdown");
+        const dropdown = this.element.querySelector(".toChooseSubject-dropdown");
         const optionToRemove = Array.from(dropdown.options).find(option => option.value === subject_added);
         if (optionToRemove) {
             optionToRemove.remove(); // Remove the selected option
@@ -136,11 +136,16 @@ export class Quatri {
     
 
     renderSubject(subject) {
-        let subject_list = document.querySelector(".subject-list");
+        let subject_list = this.element.querySelector(".subject-list");
         const subjectDisplayed = document.createElement("button");
         subjectDisplayed.addEventListener("click",() => {
             if (page !== subject.name) {
                 page = subject.name;
+                const existingSubjectDiv = document.getElementById(`subject-${subject.name}`);
+                if (existingSubjectDiv) {
+                    console.log(`Subject "${subject.name}" is already displayed.`);
+                    return;
+                }
                 subject.renderSubjectPage();
                 subject.renderAllTasks();
             }

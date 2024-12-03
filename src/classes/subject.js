@@ -41,6 +41,7 @@ export class Subject {
         let doc = document.querySelector(".subjectDiv");
         const subjectDiv = document.createElement("div");
         subjectDiv.className = ("subject-" + this.name, "subject");
+        subjectDiv.id = ("subject-" + this.name);
         
         const title = document.createElement("h3");
         
