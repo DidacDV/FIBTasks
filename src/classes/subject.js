@@ -53,7 +53,7 @@ export class Subject {
         const taskButton = document.createElement("button");
         taskButton.textContent = "Add Task";
 
-        taskButton.className = ("task-button");
+        taskButton.classList.add("task-button", "blue-button");
         taskButton.addEventListener("click", (e) =>{
             const { popUp, form } = createTaskPopUp();
 

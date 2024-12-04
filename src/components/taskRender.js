@@ -1,3 +1,5 @@
+import {trash_icon_info} from "../assets/trash_icon";
+
 export const createTaskPopUp = () => {
     const popUp = document.createElement("dialog");
     popUp.classList.add("task-popup");
@@ -101,7 +103,7 @@ export const renderNewTask = (task, subject) => {
     taskBasicInfo.append(taskDueDate);
     const detailsButton = document.createElement("button");
     detailsButton.textContent = "Details";
-    detailsButton.classList.add("details-button");
+    detailsButton.classList.add("details-button", "blue-button");
     detailsButton.addEventListener("click", () => {
         createTaskDetailsModal(task);
     });
@@ -122,16 +124,15 @@ export const renderNewTask = (task, subject) => {
         }
     });
 
-    const removeButton = document.createElement("button");
-    removeButton.classList.add("remove-button");
-    removeButton.textContent = "🗑️"; // Unicode trash can icon
-    removeButton.title = "Remove Task";
-    removeButton.addEventListener("click", () => {
+    const trash_icon = document.createElement("svg");
+    trash_icon.className = ("trash-icon");
+    trash_icon.innerHTML = trash_icon_info;
+    trash_icon.addEventListener("click", () => {
         taskCard.remove();
         subject.removeTask(task.title);
     });
 
-    taskCard.append(doneButton, taskBasicInfo, detailsButton, removeButton);
+    taskCard.append(doneButton, taskBasicInfo, detailsButton, trash_icon);
     tasklist.appendChild(taskCard);
 };
 

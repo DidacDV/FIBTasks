@@ -49,7 +49,7 @@ export class Quatri {
         quatri_name.textContent = this.id;
         
         const trash_icon = document.createElement("svg");
-        trash_icon.id = ("trash-icon");
+        trash_icon.className = ("trash-icon");
         trash_icon.innerHTML = trash_icon_info;
         
         trash_icon.addEventListener("click",(e) => {
