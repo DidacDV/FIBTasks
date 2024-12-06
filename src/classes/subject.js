@@ -102,5 +102,11 @@ export class Subject {
         this.saveTasks();
     }
 
+    removeAllTasks() {
+        for (const task of this.tasks) {
+            this.removeTask(task.title);
+        }
+    }
+
 }
 

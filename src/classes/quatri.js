@@ -1,6 +1,7 @@
 import { trash_icon_info } from "../assets/trash_icon";
 import { Subject } from "./subject";
 import {subjects} from "../assets/subjects";
+import * as render from "../render";
 //quatri when shown in side bar -> quatriId, user subjects and add subject button
 
 let page = "";
@@ -139,16 +140,13 @@ export class Quatri {
         let subject_list = this.element.querySelector(".subject-list");
         const subjectDisplayed = document.createElement("button");
         subjectDisplayed.addEventListener("click",() => {
-            if (page !== subject.name) {
-                page = subject.name;
-                const existingSubjectDiv = document.getElementById(`subject-${subject.name}`);
-                if (existingSubjectDiv) {
-                    console.log(`Subject "${subject.name}" is already displayed.`);
-                    return;
-                }
-                subject.renderSubjectPage();
-                subject.renderAllTasks();
+            const existingSubjectDiv = document.getElementById(`subject-${subject.name}`);
+            if (existingSubjectDiv) {
+                console.log(`Subject "${subject.name}" is already displayed.`);
+                return;
             }
+            subject.renderSubjectPage();
+            subject.renderAllTasks();
         })
         subjectDisplayed.textContent = subject.name;
         subject_list.appendChild(subjectDisplayed);
@@ -162,6 +160,11 @@ export class Quatri {
         });
 
         try {
+            for (const subject of this.user_subjects) {
+                subject.removeAllTasks();
+                render.removeSubject(subject.name);
+            }
+            this.user_subjects = [];
             document.dispatchEvent(removeQuatriEvent);
             this.element.remove();
         }
