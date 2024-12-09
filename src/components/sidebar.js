@@ -1,12 +1,13 @@
 export function createSidebar() {
-    const quatri_options = ["Q1", "Q2", "Q3", "Q4", "Q5", "Q6"];
+    const quatri_options = ["Q1", "Q2", "Q3", "Q4", "Q5"];
 
     
     const bar = document.createElement("div");
     bar.classList.add("side-bar");
 
     const side_title = document.createElement("p");
-    side_title.textContent = "Courses enlisted";
+    side_title.textContent = "Quatris enlisted";
+    side_title.className = "title";
     bar.appendChild(side_title);
 
     const quatri_list = document.createElement("div");

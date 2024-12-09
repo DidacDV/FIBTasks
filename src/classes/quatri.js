@@ -84,27 +84,25 @@ export class Quatri {
                 }
             }
         });
-        
-
 
         quatri_header.appendChild(quatri_name);
         quatri_header.appendChild(trash_icon);
         
         //To make the quatri's info appear or hide when clicked
         quatri_header.addEventListener("click", () => {
-            const isExpanded = subject_list.style.display === "block";
+            const isExpanded = subject_list.style.display === "flex";
         
             if (isExpanded) {
                 subject_list.style.display = "none";
                 quatri_div.classList.remove("expanded");
                 quatri_div.classList.add("non-expanded");
             } else {
-                subject_list.style.display = "block";
+                subject_list.style.display = "flex";
                 quatri_div.classList.remove("non-expanded");
                 quatri_div.classList.add("expanded");
             }
         
-            add_subject_btn.style.display = isExpanded ? "none" : "block";
+            add_subject_btn.style.display = isExpanded ? "none" : "flex";
         });
         
         quatri_div.appendChild(quatri_header);
@@ -134,10 +132,35 @@ export class Quatri {
             optionToRemove.remove(); // Remove the selected option
         }
     }
-    
+
+    removeSubject(subject_name) {
+        const subjectIndex = this.user_subjects.findIndex(subject => subject.name === subject_name);
+
+        const removedSubject = this.user_subjects.splice(subjectIndex, 1)[0];
+        const subjectList = this.element.querySelector(".subject-list");
+        const subjectButton = Array.from(subjectList.children).find(button => button.textContent === subject_name);
+        if (subjectButton) {
+            subjectButton.remove();
+        }
+        //re adding to the dropdown
+        const dropdown = this.element.querySelector(".toChooseSubject-dropdown");
+        if (dropdown) {
+            const optionElement = document.createElement("option");
+            optionElement.value = removedSubject.name;
+            optionElement.textContent = removedSubject.name;
+            dropdown.appendChild(optionElement);
+        }
+
+        render.removeSubject(subject_name);
+
+
+    }
 
     renderSubject(subject) {
         let subject_list = this.element.querySelector(".subject-list");
+        const subjectBarDiv = document.createElement("div");
+        subjectBarDiv.id = ("subject-bar" + subject.name);
+        subjectBarDiv.className = ("subject-bar");
         const subjectDisplayed = document.createElement("button");
         subjectDisplayed.addEventListener("click",() => {
             const existingSubjectDiv = document.getElementById(`subject-${subject.name}`);
@@ -148,8 +171,20 @@ export class Quatri {
             subject.renderSubjectPage();
             subject.renderAllTasks();
         })
+
+        const removeSubjectButton = document.createElement("button");
+        removeSubjectButton.textContent = "X";
+        removeSubjectButton.className = "remove-subject-button";
+        removeSubjectButton.addEventListener("click",() => {
+            this.removeSubject(subject.name);
+            const subjectBarToRemove = this.element.querySelector("#subject-bar" + subject.name);
+            subjectBarToRemove.remove();
+        })
+
         subjectDisplayed.textContent = subject.name;
-        subject_list.appendChild(subjectDisplayed);
+        subjectBarDiv.appendChild(subjectDisplayed);
+        subjectBarDiv.appendChild(removeSubjectButton);
+        subject_list.appendChild(subjectBarDiv);
     }
 
     removeQuatri() {

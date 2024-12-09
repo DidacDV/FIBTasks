@@ -23,7 +23,7 @@ const renderDOM = () => {
 
 const removeSubject = (name) => {
     const subjectToRemove = document.getElementById("subject-" + name);
-    subjectToRemove.remove();
+    if (subjectToRemove) subjectToRemove.remove();
 }
 
 
