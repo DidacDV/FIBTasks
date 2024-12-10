@@ -12,14 +12,14 @@ export class Task {
 }
 
 export class Subject {
-    constructor(name, acronym) {
+    constructor(name, quatri) {
         this.name = name;
-        this.acronymus = acronym;
         this.tasks = [];     //tasks created by the user <- array of tasks
+        this.quatri = quatri;
     }
 
     saveTasks() {
-        const key = `tasks-${this.name}`; //create a key to store values for each subject, storing tasks per subject
+        const key = `${this.quatri}-${this.name}-tasks`; //create a key to store values for each subject, storing tasks per subject
         const toSave = this.tasks.map(task => ({
             title: task.title,
             description: task.description,
@@ -32,7 +32,7 @@ export class Subject {
     }
 
     loadTasks() {
-        const key = `tasks-${this.name}`;
+        const key = `${this.quatri}-${this.name}-tasks`;
         const savedTasks = JSON.parse(localStorage.getItem(key)) || [];
         this.tasks = savedTasks.map(task => new Task(task.title, task.description, task.dueDate, task.priority, task.type));
     }

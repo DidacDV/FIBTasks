@@ -1,5 +1,5 @@
 import { trash_icon_info } from "../assets/trash_icon";
-import { Subject } from "./subject";
+import {Subject, Task} from "./subject";
 import {subjects} from "../assets/subjects";
 import * as render from "../render";
 //quatri when shown in side bar -> quatriId, user subjects and add subject button
@@ -123,9 +123,10 @@ export class Quatri {
     addSubject(subject_added) {
         console.log(subject_added);
 
-        const added = new Subject(subject_added, "none");
+        const added = new Subject(subject_added, this.id);
         this.user_subjects.push(added);
-        this.renderSubject(added); 
+        this.renderSubject(added);
+        this.saveSubjects();
         const dropdown = this.element.querySelector(".toChooseSubject-dropdown");
         const optionToRemove = Array.from(dropdown.options).find(option => option.value === subject_added);
         if (optionToRemove) {
@@ -152,8 +153,9 @@ export class Quatri {
         }
 
         render.removeSubject(subject_name);
-
-
+        this.user_subjects.filter((subject => subject.id !== subject_name));
+        if (this.user_subjects.length > 0) this.saveSubjects();
+        else localStorage.removeItem(this.id+"-subjects");
     }
 
     renderSubject(subject) {
@@ -206,6 +208,23 @@ export class Quatri {
         catch (err) {
             console.log(err);
         }
+    }
+
+    saveSubjects() {
+        if (this.user_subjects.length > 0) {
+            const key = `${this.id}-subjects`; //create a key to store values for each quatri
+            const toSave = this.user_subjects.map(subject => ({
+                name: subject.name,
+                quatri: subject.quatri,
+            }));
+            localStorage.setItem(key, JSON.stringify(toSave)); //save tasks inJSON format to localStorage
+        }
+    }
+
+    loadSubjects() {
+        const key = `${this.id}-subjects`;
+        const savedSubjects = JSON.parse(localStorage.getItem(key)) || [];
+        this.user_subjects = savedSubjects.map(subject => new Subject(subject.name, subject.quatri));
     }
 
 }

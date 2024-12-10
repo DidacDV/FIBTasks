@@ -1,2 +1,4 @@
 save all state info to localStorage, enabling to reload the page and maintain all the previous information.
+    tasks saved and loaded properly
+    subjects of each quatri saved but not loaded
 re-structure the whole code (it's really messy) <- major refactor: Divide rendering and main logic in two layers
